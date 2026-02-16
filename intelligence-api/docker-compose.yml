@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - '3001:3001'
+    environment:
+      - PORT=3001
+      - NODE_ENV=development
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_SERVICE_KEY=${SUPABASE_SERVICE_KEY}
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=${JWT_SECRET}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - CORS_ORIGINS=${CORS_ORIGINS:-chrome-extension://*,http://localhost:5173,http://localhost:3000}
+    depends_on:
+      - redis
+
+  worker:
+    build: .
+    command: ['node', 'dist/workers/reportWorker.js']
+    environment:
+      - NODE_ENV=development
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_SERVICE_KEY=${SUPABASE_SERVICE_KEY}
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=${JWT_SECRET}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - JINA_API_KEY=${JINA_API_KEY}
+      - REPORTS_URL=${REPORTS_URL:-http://localhost:3000}
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:

@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════
+   Base Styles — Stitch Design System
+   ═══════════════════════════════════════════════════════════════ */
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #0f172a;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Report Body Text — Georgia serif for long-form content
+   ═══════════════════════════════════════════════════════════════ */
+
+.report-body-text {
+  font-family: 'Georgia', serif;
+  line-height: 1.75;
+  font-size: 1.0625rem;
+  color: #334155;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Citation Chips — superscript inline references
+   ═══════════════════════════════════════════════════════════════ */
+
+.citation-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #475569;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  height: 16px;
+  min-width: 16px;
+  padding: 0 4px;
+  border-radius: 9999px;
+  vertical-align: super;
+  margin-left: 0.125rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.citation-chip:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.citation-chip-inferred {
+  background-color: #fef3c7;
+  color: #d97706;
+  border-color: #fde68a;
+}
+
+.citation-chip-inferred:hover {
+  background-color: #fde68a;
+  color: #b45309;
+  border-color: #fbbf24;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Sidebar Navigation
+   ═══════════════════════════════════════════════════════════════ */
+
+.sidebar-nav-link {
+  @apply flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all;
+}
+
+.sidebar-nav-link.active {
+  @apply bg-slate-100 text-slate-900 font-semibold;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Confidence Blocks — left-border accent for inferred content
+   ═══════════════════════════════════════════════════════════════ */
+
+.confidence-block-verified {
+  @apply bg-slate-50 rounded-lg p-5 border border-slate-100;
+}
+
+.confidence-block-inferred {
+  @apply rounded-lg p-5 border relative overflow-hidden;
+  background: rgba(254, 243, 199, 0.3);
+  border-color: rgba(251, 191, 36, 0.2);
+}
+
+.confidence-block-inferred::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #fbbf24;
+  border-radius: 4px 0 0 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Timeline Section Borders
+   ═══════════════════════════════════════════════════════════════ */
+
+.timeline-section {
+  @apply relative pl-8 border-l border-slate-200;
+}
+
+.timeline-dot {
+  @apply absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-white border-2 border-slate-300 ring-4 ring-white;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Stat Cards
+   ═══════════════════════════════════════════════════════════════ */
+
+.stat-card {
+  @apply p-4 rounded-lg bg-slate-50 border border-slate-100;
+}
+
+.stat-card-inferred {
+  @apply p-4 rounded-lg bg-slate-50 border border-slate-100 border-l-4 border-l-amber-400 relative;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Tables
+   ═══════════════════════════════════════════════════════════════ */
+
+.report-table {
+  @apply w-full text-sm text-left;
+}
+
+.report-table thead {
+  @apply bg-white text-slate-500 border-b border-slate-100;
+}
+
+.report-table th {
+  @apply px-4 sm:px-6 py-3 font-medium text-xs uppercase tracking-wider;
+}
+
+.report-table tbody {
+  @apply divide-y divide-slate-100;
+}
+
+.report-table td {
+  @apply px-4 sm:px-6 py-4;
+}
+
+.report-table tr {
+  @apply hover:bg-slate-50/80 transition-colors;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Buttons
+   ═══════════════════════════════════════════════════════════════ */
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-900 disabled:pointer-events-none disabled:opacity-50;
+}
+
+.btn-primary {
+  @apply bg-slate-900 text-white shadow hover:bg-slate-800 px-4 py-2;
+}
+
+.btn-outline {
+  @apply border border-slate-200 bg-white shadow-sm hover:bg-slate-100 hover:text-slate-900 px-4 py-2;
+}
+
+.btn-ghost {
+  @apply hover:bg-slate-100 hover:text-slate-900 px-4 py-2;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Print styles
+   ═══════════════════════════════════════════════════════════════ */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-show {
+    display: block !important;
+  }
+
+  body {
+    font-size: 12pt;
+  }
+
+  .sidebar-wrapper {
+    display: none !important;
+  }
+
+  main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+
+  .confidence-block-inferred {
+    background: #fffbeb !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .confidence-block-inferred::before {
+    background: #f59e0b !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  .citation-chip::after {
+    content: none;
+  }
+}
